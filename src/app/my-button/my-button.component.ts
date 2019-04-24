@@ -3,14 +3,8 @@ import {
   OnInit
 } from '@angular/core';
 
-import {
-  AddinClientService
-} from '@blackbaud/skyux-lib-addin-client';
-
-import {
-  AddinClientInitArgs,
-  AddinButtonStyle
-} from '@blackbaud/sky-addin-client';
+import { AddinClientService } from '@blackbaud/skyux-lib-addin-client';
+import { AddinClientInitArgs, AddinButtonStyle } from '@blackbaud/sky-addin-client';
 
 @Component({
   selector: 'my-button',
