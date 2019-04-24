@@ -1,0 +1,54 @@
+<div>
+  <p *ngIf="!closeHelp">
+    <sky-alert alertType="info" closeable="true" [closed]="closeHelp" (closedChange)="helpClosed()">
+      You can subscribe to the help click and provide additional help content to your users.
+    </sky-alert>
+  </p>
+
+  <h1>{{ 'tile_header' | skyAppResources }}</h1>
+
+  <div *ngIf="showWelcomeMessage">
+    <p>Welcome to the SKY UX Add-in template.</p>
+
+    <sky-alert alertType="success">
+      You've just taken your first step into a larger world.
+    </sky-alert>
+  </div>
+
+  <p>
+    <a
+      href="https://developer.blackbaud.com/skyapi/docs/addins"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="sky-btn sky-btn-primary"
+    >
+      Learn more about SKY Add-ins
+    </a>
+  </p>
+
+  <div>
+    <p>
+      The following button shows a modal:
+    </p>
+    <button type="button" class="sky-btn sky-btn-default" style="display: inline-block" (click)="showModal()">Show a modal</button>
+  </div>
+
+  <div>
+    <p>
+      The following button shows a toast:
+    </p>
+    <button type="button" class="sky-btn sky-btn-default" style="display: inline-block" (click)="showToast()">Show a toast</button>
+  </div>
+
+
+  <div *ngIf="modalResponse">
+    <p></p>
+    <sky-alert alertType="info" closeable="true">
+      The modal returned the following context:
+      <br />
+      <span>{{ modalResponse }}</span>
+    </sky-alert>
+  </div>
+
+
+</div>
