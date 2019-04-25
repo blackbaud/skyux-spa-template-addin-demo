@@ -1,0 +1,29 @@
+<sky-modal>
+  <sky-modal-header>
+    {{ 'my_tile_settings_modal_header_caption' | skyAppResources }}
+  </sky-modal-header>
+  <sky-modal-content>
+    <p>
+      This is a simple (albeit convoluted) example of handling the <code>settingsClick</code> to show a modal used to configure a user's tile-specific preferences.
+    </p>
+    <p>
+      (Note:  this is just a sample, nothing is actually saved)
+    </p>
+    <div class="sky-form-group">
+      <sky-checkbox
+        [(ngModel)]="context.showWelcomeMessage">
+        <sky-checkbox-label>
+          {{ 'my_tile_settings_show_welcome_message' | skyAppResources }}
+        </sky-checkbox-label>
+      </sky-checkbox>
+    </div>
+  </sky-modal-content>
+  <sky-modal-footer>
+    <button type="button" class="sky-btn sky-btn-primary" (click)="save()">
+      {{ 'save_button_caption' | skyAppResources }}
+    </button>
+    <button type="button"class="sky-btn sky-btn-link" (click)="instance.cancel()">
+      {{ 'cancel_button_caption' | skyAppResources }}
+    </button>
+  </sky-modal-footer>
+</sky-modal>
