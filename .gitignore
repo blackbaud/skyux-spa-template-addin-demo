@@ -32,3 +32,6 @@ dist
 
 # SKY UX temporary files
 .skypagestmp
+
+# Mac files
+.DS_Store
