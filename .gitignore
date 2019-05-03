@@ -20,6 +20,7 @@ yarn.lock
 # SKY UX temp directory
 .skyuxtmp
 .skypageslocales
+.skypagestmp
 
 # SKY UX build directory
 dist
@@ -29,9 +30,3 @@ dist
 
 # IntelliJ files
 .idea
-
-# SKY UX temporary files
-.skypagestmp
-
-# Mac files
-.DS_Store
