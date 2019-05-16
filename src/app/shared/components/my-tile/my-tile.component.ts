@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AddinClientService } from '@blackbaud/skyux-lib-addin-client';
-import { AddinClientInitArgs, AddinTileSummaryStyle, AddinToastStyle } from '@blackbaud/sky-addin-client';
+import { AddinClientInitArgs, AddinTileSummaryStyle, AddinToastStyle, AddinConfirmButtonStyle } from '@blackbaud/sky-addin-client';
 import { MyTileSettingsContext } from '../my-tile-settings/my-tile-settings-context';
 import { SkyModalCloseArgs } from '@skyux/modals';
 
@@ -12,7 +12,9 @@ import { SkyModalCloseArgs } from '@skyux/modals';
 export class MyTileComponent implements OnInit {
 
   public closeHelp: boolean = true;
+  public confirmAction: string;
   public context: any;
+  public environmentId: string;
   public modalResponse: string;
   public showWelcomeMessage: boolean = true;
   public userIdentityToken: string;
@@ -23,7 +25,8 @@ export class MyTileComponent implements OnInit {
 
   public ngOnInit() {
     this.addinClientService.args.subscribe((args: AddinClientInitArgs) => {
-      this.context = args.context;
+      this.environmentId = args.envId;
+      this.context = JSON.stringify(args.context, undefined, 2);
 
       args.ready({
         showUI: true,
@@ -46,6 +49,15 @@ export class MyTileComponent implements OnInit {
     });
   }
 
+  public getUserIdentityToken() {
+    this.userIdentityToken = undefined;
+
+     this.addinClientService.getUserIdentityToken()
+      .subscribe((token: string) => {
+       this.userIdentityToken = token;
+     });
+  }
+
   public showModal() {
     // provide some context for the modal
     let context = {
@@ -55,12 +67,6 @@ export class MyTileComponent implements OnInit {
 
     // TODO:  Update the token in the below URL (you could also build this URL at runtime by injecting the SkyAppConfig service)
     this.showModalInternal('https://host.nxt.blackbaud.com/REPLACE_WITH_YOUR_APP_NAME/add-customer', context);
-  }
-
-  public showToast() {
-    const message: string = 'This is a toast message';
-    const toastStyle: AddinToastStyle = AddinToastStyle.Success;
-    this.addinClientService.showToast({ message: message, style: toastStyle });
   }
 
   public showSettingsModal() {
@@ -80,16 +86,46 @@ export class MyTileComponent implements OnInit {
       });
   }
 
-  public helpClosed() {
-    this.closeHelp = true;
+  public showToast() {
+    const message: string = 'This is a toast message';
+    const toastStyle: AddinToastStyle = AddinToastStyle.Success;
+    this.addinClientService.showToast({ message: message, style: toastStyle });
   }
 
-  public getAuthToken() {
-    this.userIdentityToken = undefined;
+  public showConfirm() {
+    this.confirmAction = undefined;
 
-     this.addinClientService.getAuthToken().subscribe(token => {
-       this.userIdentityToken = token;
-     });
+    this.addinClientService.showConfirm({
+      body: 'Are you sure you want to continue?',
+      buttons: [
+      {
+        action: 'yes',
+        text: 'Yes',
+        autofocus: true,
+        style: AddinConfirmButtonStyle.Primary
+      },
+      {
+        action: 'cancel',
+        style: AddinConfirmButtonStyle.Link,
+        text: 'Cancel'
+      }
+      ],
+      message: 'Saving...'
+    }).subscribe((action: string) => {
+      this.confirmAction = action;
+    });
+  }
+
+  public showError() {
+    this.addinClientService.showError({
+      closeText: 'OK',
+      title: 'Save Error',
+      description: 'An unexpected error occurred'
+    });
+  }
+
+  public helpClosed() {
+    this.closeHelp = true;
   }
 
   private showHelp() {
@@ -102,7 +138,7 @@ export class MyTileComponent implements OnInit {
     this.addinClientService.showModal({
       url: url,
       context: context
-    }).subscribe(modalResponse => {
+    }).subscribe((modalResponse: any) => {
       this.modalResponse = JSON.stringify(modalResponse, undefined, 2);
     });
   }

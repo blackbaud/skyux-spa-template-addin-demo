@@ -1,0 +1,29 @@
+<sky-page-summary *ngIf="record">
+  <sky-page-summary-image>
+    <sky-avatar
+      [name]="record.name"
+    >
+    </sky-avatar>
+  </sky-page-summary-image>
+  <sky-page-summary-title>
+    {{record.name}}
+  </sky-page-summary-title>
+  <sky-page-summary-subtitle>
+    {{record.constituentCode}}
+  </sky-page-summary-subtitle>
+  <sky-page-summary-status>
+    <sky-label
+      labelType="{{ record.status === 'Past due' ? 'danger' : 'success' }}"
+    >
+      {{ record.status }}
+    </sky-label>
+  </sky-page-summary-status>
+  <sky-page-summary-content>
+    <h2>
+      Constituent Summary
+    </h2>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis quae mollitia rem obcaecati. Aspernatur vitae iusto cum corporis adipisci corrupti dolore odit a impedit enim. Porro ab exercitationem quidem? Maiores!
+    </p>
+  </sky-page-summary-content>
+</sky-page-summary>
