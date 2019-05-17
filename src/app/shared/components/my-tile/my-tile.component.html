@@ -26,20 +26,37 @@
     </a>
   </p>
 
+  <label for="environmentId" class="sky-control-label">
+    The environment ID is a context value that is available to all add-ins:
+  </label>
+  <div id="environmentId">{{ environmentId }}</div>
+
+  <p></p>
+  <label for="context" class="sky-control-label">
+    Additional context values vary for each extension point - for the current extension point, the following context is provided:
+  </label>
+  <div id="context">{{ context }}</div>
+
+  <p></p>
+  <p>
+    Click the button to request a user identity token for the current user:
+  </p>
+  <button type="button" class="sky-btn sky-btn-default" (click)="getUserIdentityToken()">Get user identity token</button>
+
+  <div *ngIf="userIdentityToken" class="my-tile-token">
+    <p></p>
+    <p>
+      The following string represents the identity of the current user, and can be provided to the add-in's backend for validation:
+    </p>
+    <span>{{ userIdentityToken }}</span>
+  </div>
+
   <div>
     <p>
       The following button shows a modal:
     </p>
     <button type="button" class="sky-btn sky-btn-default" style="display: inline-block" (click)="showModal()">Show a modal</button>
   </div>
-
-  <div>
-    <p>
-      The following button shows a toast:
-    </p>
-    <button type="button" class="sky-btn sky-btn-default" style="display: inline-block" (click)="showToast()">Show a toast</button>
-  </div>
-
 
   <div *ngIf="modalResponse">
     <p></p>
@@ -50,18 +67,34 @@
     </sky-alert>
   </div>
 
-  <p></p>
-  <p>
-    Click the button to request a user identity token for the current user:
-  </p>
-  <button type="button" class="sky-btn sky-btn-default" (click)="getAuthToken()">Get auth token</button>
-
-  <div *ngIf="userIdentityToken" class="my-tile-token">
-    <p></p>
+  <div>
     <p>
-      The following string represents the identity of the current user, and can be provided to the add-in's backend for validation:
+      The following button shows a toast:
     </p>
-    <span>{{ userIdentityToken }}</span>
+    <button type="button" class="sky-btn sky-btn-default" style="display: inline-block" (click)="showToast()">Show a toast</button>
+  </div>
+
+  <div>
+    <p>
+      The following button shows a confirm dialog:
+    </p>
+    <button type="button" class="sky-btn sky-btn-default" style="display: inline-block" (click)="showConfirm()">Show a confirm dialog</button>
+  </div>
+
+  <div *ngIf="confirmAction">
+    <p></p>
+    <sky-alert alertType="info" closeable="true">
+      The confirm dialog returned the following action:
+      <br />
+      <span>{{ confirmAction }}</span>
+    </sky-alert>
+  </div>
+
+  <div>
+    <p>
+      The following button shows an error dialog:
+    </p>
+    <button type="button" class="sky-btn sky-btn-default" style="display: inline-block" (click)="showError()">Show an error dialog</button>
   </div>
 
 </div>

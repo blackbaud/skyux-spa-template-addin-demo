@@ -1,0 +1,57 @@
+<div>
+  <h1>{{ 'flyout_tile_header' | skyAppResources }}</h1>
+
+  <p>
+    The SKY Add-in framework supports showing a flyout panel that displays additional information about a record.  The content of the flyout will be rendered in a separate iframe from the parent add-in and can even be implemented using a different UX framework from the parent add-in.
+  </p>
+
+  <div>
+    <p>
+      Click the name of a record in the list to show a flyout:
+    </p>
+
+    <sky-list
+      [data]="records"
+      [defaultView]="grid"
+    >
+      <sky-list-view-grid
+        [rowHighlightedId]="rowHighlightedId"
+        #grid
+      >
+        <sky-grid-column
+          field="name"
+          heading="Name"
+          [template]="customTemplate"
+        >
+        </sky-grid-column>
+        <sky-grid-column
+          field="constituentCode"
+          heading="Constituent code"
+        >
+        </sky-grid-column>
+        <sky-grid-column
+          field="status"
+          heading="Status"
+        >
+        </sky-grid-column>
+      </sky-list-view-grid>
+    </sky-list>
+
+    <ng-template
+      let-row="row"
+      #customTemplate
+    >
+      <button
+        class="sky-btn sky-btn-link"
+        type="button"
+        (click)="onNameClick(row)"
+      >
+        {{ row.name }}
+      </button>
+    </ng-template>
+  </div>
+
+  <p>
+    <button type="button" class="sky-btn sky-btn-default" style="display: inline-block" (click)="closeFlyout()">Close flyout</button>
+  </p>
+</div>

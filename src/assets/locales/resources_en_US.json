@@ -3,6 +3,10 @@
     "message": "SKY UX Add-in Template",
     "_description": "Header for the add-in tile"
   },
+  "flyout_tile_header": {
+    "message": "Add-in Flyout Demo",
+    "_description": "Header for the add-in tile"
+  },
   "modal_header_caption": {
     "message": "Add customer",
     "_description": "Form used to add a new customer."
