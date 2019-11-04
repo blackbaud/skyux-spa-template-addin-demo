@@ -16,6 +16,7 @@
   "keywords": [],
   "author": "Blackbaud",
   "license": "ISC",
+  "repository": {},
   "dependencies": {
     "@angular/animations": "^7.0.0",
     "@angular/common": "^7.0.0",
@@ -53,6 +54,7 @@
     "@skyux/popovers": "^3.0.0",
     "@skyux/router": "^3.0.0",
     "@skyux/theme": "^3.0.0",
+    "core-js": "^2.6.9",
     "microedge-rxstate": "^3.0.0",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.0.0",
