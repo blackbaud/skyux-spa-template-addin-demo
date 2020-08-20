@@ -53,7 +53,7 @@ export class MyButtonComponent implements OnInit {
     this.addinClientService.showModal({
       url: url,
       context: context
-    }).subscribe(modalResponse => {
+    }).subscribe((modalResponse: any) => {
       this.modalResponse = JSON.stringify(modalResponse, undefined, 2);
     });
   }

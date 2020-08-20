@@ -27,7 +27,7 @@
     "@angular/router": "9.1.12",
     "@blackbaud/auth-client": "2.32.0",
     "@blackbaud/sky-addin-client": "1.0.20",
-    "@blackbaud/skyux-lib-addin-client": "2.0.11",
+    "@blackbaud/skyux-lib-addin-client": "3.0.0",
     "@skyux/animations": "4.0.1",
     "@skyux/assets": "4.0.1",
     "@skyux/avatar": "4.1.0",
